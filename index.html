@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battle Game</title>
+    <title>Monster Battle</title>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
     <style>
         body {
@@ -27,31 +27,25 @@
                 super("GameScene");
                 this.player;
                 this.enemies;
-                this.weapon;
                 this.currentLevel = 1;
-                this.gold = 0;
             }
 
             preload() {
-                this.load.image("player", "player.png");
-                this.load.image("enemy", "enemy.png");
-                this.load.image("weapon", "weapon.png");
+                this.load.image("player", "https://via.placeholder.com/50/00FF00");
+                this.load.image("enemy", "https://via.placeholder.com/50/FF0000");
             }
 
             create() {
-                this.player = this.physics.add.sprite(100, 200, "player").setScale(1.5);
+                this.player = this.physics.add.sprite(100, 200, "player");
                 this.enemies = this.physics.add.group();
-                this.weapon = this.add.image(50, 50, "weapon").setScale(1);
-                
                 this.spawnEnemy();
-                
                 this.input.keyboard.on("keydown-SPACE", () => {
                     this.attack();
                 });
             }
 
             spawnEnemy() {
-                let enemy = this.enemies.create(300, 200, "enemy").setScale(1.5);
+                let enemy = this.enemies.create(300, 200, "enemy");
                 enemy.setInteractive();
                 enemy.on("pointerdown", () => {
                     this.defeatEnemy(enemy);
@@ -67,12 +61,6 @@
 
             defeatEnemy(enemy) {
                 enemy.destroy();
-                this.gold += 10;
-                
-                if (this.currentLevel % 3 === 0) {
-                    this.upgradeWeapon();
-                }
-                
                 if (this.currentLevel < 10) {
                     this.currentLevel++;
                     this.spawnEnemy();
@@ -81,13 +69,8 @@
                 }
             }
 
-            upgradeWeapon() {
-                this.weapon.setScale(this.weapon.scale + 0.2);
-            }
-
             winGame() {
-                alert("Chúc mừng! Bạn đã chiến thắng và nhận được thẻ game!");
-                console.log("Thẻ game: XXXXX-XXXXX"); // Chỉ bạn có thể chỉnh sửa mã này
+                alert("Chúc mừng! Bạn đã chiến thắng!");
             }
         }
 
