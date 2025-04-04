@@ -9,6 +9,14 @@
         body {
             margin: 0;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+        canvas {
+            display: block;
         }
     </style>
 </head>
@@ -25,9 +33,9 @@
             }
 
             preload() {
-                this.load.image("player", "https://via.placeholder.com/50");
-                this.load.image("enemy", "https://via.placeholder.com/40");
-                this.load.image("weapon", "https://via.placeholder.com/20");
+                this.load.image("player", "player.png");
+                this.load.image("enemy", "enemy.png");
+                this.load.image("weapon", "weapon.png");
             }
 
             create() {
